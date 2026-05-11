@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regras de Carregamento VE - Residencial Magnólia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); cursor: pointer; }
+        .justificativa-bg { background-color: #f8fafc; border-left: 4px solid #3b82f6; }
+        
+        /* Modal Animation */
+        #modal-overlay { transition: opacity 0.3s ease; }
+        #modal-content { transition: transform 0.3s ease; }
+        .modal-open { overflow: hidden; }
+
+        @media print {
+            .no-print { display: none; }
+            body { background: white; }
+            .shadow-lg { box-shadow: none; border: 1px solid #ccc; }
+            .card-hover:hover { transform: none; box-shadow: none; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen p-4 md:p-8">
+
+    <!-- Header -->
+    <header class="max-w-6xl mx-auto mb-10 text-center">
+        <div class="inline-flex items-center justify-center p-3 bg-blue-100 rounded-full mb-4">
+            <i class="ph-fill ph-car-profile text-3xl text-blue-700"></i>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Proposta de Regras Gerais</h1>
+        <h2 class="text-xl text-blue-600 font-semibold">Sistema de Abastecimento de Veículos Eletrificados (SAVE) - Residencial Magnólia</h2>
+        <p class="text-slate-500 mt-2 max-w-2xl mx-auto">Diretrizes para garantir segurança, isonomia e viabilidade técnica para todos os condôminos. <span class="no-print font-bold text-blue-600 block mt-2 text-sm">(Clique nos cartões para ler o texto completo)</span></p>
+    </header>
+
+    <!-- Grid Container -->
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Item 1 -->
+        <div onclick="openModal(1)" class="bg-white rounded-xl shadow-lg p-6 card-hover transition-all duration-300 flex flex-col h-full border-t-4 border-blue-600 group">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-blue-100 p-2 rounded-lg group-hover:bg-blue-200 transition-colors">
+                    <i class="ph-bold ph-clipboard-text text-2xl text-blue-700"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800">1. Requisitos Técnicos</h3>
+            </div>
+            <ul class="list-disc pl-5 space-y-2 mb-4 text-sm text-slate-700 flex-grow">
+                <li>Obrigatório seguir estritamente o <strong>Projeto Elétrico (SAVE)</strong>.</li>
+                <li>Contratação de engenheiro para projeto individual.</li>
+                <li><strong>ART de Projeto e Execução</strong> indispensável.</li>
+                <li>Cumprimento das normas vigentes.</li>
+            </ul>
+            <div class="justificativa-bg p-3 rounded-r-lg mt-auto">
+                <p class="text-xs font-semibold text-blue-800 uppercase tracking-wide mb-1">Por que?</p>
+                <p class="text-xs text-slate-600 leading-relaxed">Garantir a padronização técnica, a segurança e a conformidade legal frente aos órgãos fiscalizadores.</p>
+            </div>
+            <p class="text-xs text-center text-blue-400 mt-3 no-print group-hover:text-blue-600 transition-colors">Clique para ler a regra completa</p>
+        </div>
+
+        <!-- Item 2 -->
+        <div onclick="openModal(2)" class="bg-white rounded-xl shadow-lg p-6 card-hover transition-all duration-300 flex flex-col h-full border-t-4 border-green-500 group">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-green-100 p-2 rounded-lg group-hover:bg-green-200 transition-colors">
+                    <i class="ph-bold ph-plug-charging text-2xl text-green-700"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800">2. Tipologia (Wallbox)</h3>
+            </div>
+            <div class="mb-4 flex-grow">
+                <p class="text-sm text-slate-700 mb-2">Autorizado exclusivamente carregador fixo <strong>(Wallbox)</strong>.</p>
+                <div class="flex items-center gap-2 text-xs font-bold text-red-600 bg-red-50 p-2 rounded border border-red-100">
+                    <i class="ph-bold ph-prohibit"></i> VEDADO: Tomadas de uso geral ou carregadores portáteis.
+                </div>
+            </div>
+            <div class="justificativa-bg p-3 rounded-r-lg mt-auto">
+                <p class="text-xs font-semibold text-blue-800 uppercase tracking-wide mb-1">Por que?</p>
+                <p class="text-xs text-slate-600 leading-relaxed">Wallbox possui "inteligência" para cortar anomalias. Tomadas comuns criam vulnerabilidade de segurança e risco de uso indiscriminado.</p>
+            </div>
+             <p class="text-xs text-center text-green-400 mt-3 no-print group-hover:text-green-600 transition-colors">Clique para ler a regra completa</p>
+        </div>
+
+        <!-- Item 3 -->
+        <div onclick="openModal(3)" class="bg-white rounded-xl shadow-lg p-6 card-hover transition-all duration-300 flex flex-col h-full border-t-4 border-purple-500 group">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-purple-100 p-2 rounded-lg group-hover:bg-purple-200 transition-colors">
+                    <i class="ph-bold ph-house-line text-2xl text-purple-700"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800">3. Limitação por Unidade</h3>
+            </div>
+            <p class="text-sm text-slate-700 mb-4 flex-grow">
+                Permitida a instalação de apenas <strong>01 (um) ponto</strong> de recarga (Wallbox) por unidade autônoma (apartamento).
+            </p>
+            <div class="justificativa-bg p-3 rounded-r-lg mt-auto">
+                <p class="text-xs font-semibold text-blue-800 uppercase tracking-wide mb-1">Por que?</p>
+                <p class="text-xs text-slate-600 leading-relaxed">Assegurar a isonomia e permitir acesso ao maior número de moradores antes de obras complexas.</p>
+            </div>
+             <p class="text-xs text-center text-purple-400 mt-3 no-print group-hover:text-purple-600 transition-colors">Clique para ler a regra completa</p>
+        </div>
+
+        <!-- Item 4 -->
+        <div onclick="openModal(4)" class="bg-white rounded-xl shadow-lg p-6 card-hover transition-all duration-300 flex flex-col h-full border-t-4 border-amber-500 group">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-amber-100 p-2 rounded-lg group-hover:bg-amber-200 transition-colors">
+                    <i class="ph-bold ph-lightning text-2xl text-amber-700"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800">4. Potência Máxima</h3>
+            </div>
+            <div class="flex flex-col gap-2 mb-4 flex-grow text-sm text-slate-700">
+                <div class="flex justify-between border-b pb-1">
+                    <span>Limite:</span>
+                    <span class="font-bold">8 kW</span>
+                </div>
+                <div class="flex justify-between border-b pb-1">
+                    <span>Tipo:</span>
+                    <span class="font-bold">Corrente Alternada</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Fase:</span>
+                    <span class="font-bold">Monofásico</span>
+                </div>
+            </div>
+            <div class="justificativa-bg p-3 rounded-r-lg mt-auto">
+                <p class="text-xs font-semibold text-blue-800 uppercase tracking-wide mb-1">Por que?</p>
+                <p class="text-xs text-slate-600 leading-relaxed">Preservar a curva de demanda e evitar sobrecarga prematura do sistema elétrico.</p>
+            </div>
+             <p class="text-xs text-center text-amber-400 mt-3 no-print group-hover:text-amber-600 transition-colors">Clique para ler a regra completa</p>
+        </div>
+
+        <!-- Item 5 -->
+        <div onclick="openModal(5)" class="bg-white rounded-xl shadow-lg p-6 card-hover transition-all duration-300 flex flex-col h-full border-t-4 border-red-500 group">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-red-100 p-2 rounded-lg group-hover:bg-red-200 transition-colors">
+                    <i class="ph-bold ph-clock-clockwise text-2xl text-red-700"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800">5. Capacidade e Rodízio</h3>
+            </div>
+            <p class="text-sm text-slate-700 mb-4 flex-grow">
+                Se interessados superarem a capacidade, será instituído <strong>sistema de rodízio</strong> (uso ou horários) até adequação dos quadros.
+            </p>
+            <div class="justificativa-bg p-3 rounded-r-lg mt-auto">
+                <p class="text-xs font-semibold text-blue-800 uppercase tracking-wide mb-1">Por que?</p>
+                <p class="text-xs text-slate-600 leading-relaxed">Garantir benefício justo sem provocar o desarme geral dos disjuntores do prédio.</p>
+            </div>
+             <p class="text-xs text-center text-red-400 mt-3 no-print group-hover:text-red-600 transition-colors">Clique para ler a regra completa</p>
+        </div>
+
+        <!-- Item 6 -->
+        <div onclick="openModal(6)" class="bg-white rounded-xl shadow-lg p-6 card-hover transition-all duration-300 flex flex-col h-full border-t-4 border-slate-600 group">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-slate-200 p-2 rounded-lg group-hover:bg-slate-300 transition-colors">
+                    <i class="ph-bold ph-magnifying-glass text-2xl text-slate-700"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800">6. Consultoria Técnica</h3>
+            </div>
+            <p class="text-sm text-slate-700 mb-2 font-semibold">Taxa paga pelo solicitante para:</p>
+            <ul class="list-disc pl-5 space-y-1 mb-4 text-xs text-slate-600 flex-grow">
+                <li>Revisar projeto executivo.</li>
+                <li>Determinar fase elétrica.</li>
+                <li>Fiscalizar a execução.</li>
+                <li>Gerar registro para o condomínio.</li>
+            </ul>
+            <div class="justificativa-bg p-3 rounded-r-lg mt-auto">
+                <p class="text-xs font-semibold text-blue-800 uppercase tracking-wide mb-1">Por que?</p>
+                <p class="text-xs text-slate-600 leading-relaxed">Garantir imparcialidade e isenção de custos para os demais moradores.</p>
+            </div>
+             <p class="text-xs text-center text-slate-400 mt-3 no-print group-hover:text-slate-600 transition-colors">Clique para ler a regra completa</p>
+        </div>
+
+    </main>
+
+    <!-- Footer / Action Area -->
+    <footer class="max-w-4xl mx-auto mt-12 text-center no-print">
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <p class="text-sm text-blue-800 font-medium flex items-center justify-center gap-2">
+                <i class="ph-bold ph-info"></i>
+                Documento de apoio visual para Assembleia Geral Extraordinária
+            </p>
+        </div>
+        <button onclick="window.print()" class="mt-6 bg-slate-800 hover:bg-slate-700 text-white font-semibold py-2 px-6 rounded-full transition-colors flex items-center gap-2 mx-auto">
+            <i class="ph-bold ph-printer"></i> Imprimir / Salvar como PDF
+        </button>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="modal-overlay" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm" onclick="closeModal(event)">
+        <div id="modal-content" class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-6 md:p-8 relative transform scale-95 opacity-0 transition-all duration-300">
+            <!-- Botão Fechar -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 p-2 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors">
+                <i class="ph-bold ph-x text-xl text-slate-600"></i>
+            </button>
+
+            <!-- Cabeçalho Modal -->
+            <div class="flex items-center gap-4 mb-6 border-b pb-4">
+                <div id="modal-icon-bg" class="p-3 rounded-xl bg-blue-100">
+                    <i id="modal-icon" class="ph-bold ph-clipboard-text text-3xl text-blue-700"></i>
+                </div>
+                <div>
+                    <span class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Detalhamento Técnico</span>
+                    <h2 id="modal-title" class="text-2xl font-bold text-slate-900">1. Requisitos Técnicos e Projetos</h2>
+                </div>
+            </div>
+
+            <!-- Corpo Modal -->
+            <div class="space-y-6 overflow-y-auto max-h-[60vh] pr-2">
+                <div>
+                    <h4 class="text-sm font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <i class="ph-bold ph-gavel"></i> REGRA OFICIAL
+                    </h4>
+                    <p id="modal-text" class="text-slate-700 leading-relaxed text-justify text-base bg-slate-50 p-4 rounded-lg border border-slate-100">
+                        <!-- Texto inserido via JS -->
+                    </p>
+                </div>
+                
+                <div>
+                     <h4 class="text-sm font-bold text-blue-800 mb-2 flex items-center gap-2">
+                        <i class="ph-bold ph-lightbulb"></i> JUSTIFICATIVA TÉCNICA
+                    </h4>
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-lg">
+                        <p id="modal-justification" class="text-slate-700 italic text-sm">
+                            <!-- Texto inserido via JS -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rodapé Modal -->
+            <div class="mt-8 pt-4 border-t flex justify-end">
+                <button onclick="closeModal()" class="px-6 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors font-medium">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        const rulesData = {
+            1: {
+                title: "1. Dos Requisitos Técnicos e Projetos",
+                icon: "ph-clipboard-text",
+                colorClass: "blue",
+                text: "A instalação de pontos de recarga deverá obedecer estritamente ao projeto elétrico para Sistema de Abastecimento de Veículos Eletrificados (SAVE) contratado pelo condomínio, incluindo determinação de padrões para tipos e seção de condutores, conduítes, dispositivos de proteção condutores e demais fatores técnicos determinados no projeto coletivo. Caberá ao proprietário interessado contratar profissional habilitado para a elaboração do seu projeto individual em harmonia com as regras determinadas pelo projeto coletivo, sendo obrigatória a apresentação da Anotação de Responsabilidade Técnica (ART) de projeto e execução, bem como o cumprimento de todas as normas técnicas vigentes.",
+                justification: "Garantir a padronização técnica, a segurança das instalações e a conformidade legal do condomínio frente aos órgãos fiscalizadores, evitando intervenções amadoras que coloquem a edificação em risco."
+            },
+            2: {
+                title: "2. Da Tipologia do Equipamento",
+                icon: "ph-plug-charging",
+                colorClass: "green",
+                text: "Fica autorizada exclusivamente a instalação de estações de recarga do tipo Wallbox (carregador fixo de parede).<br><br><strong>Parágrafo Único:</strong> É expressamente vedada a instalação de tomadas de uso geral (padrão doméstico ou industrial) para fins de recarga veicular, bem como a utilização regular de carregadores portáteis como método fixo de abastecimento.",
+                justification: "Os Wallbox são mais eficazes no gerenciamento ativo da energia, por disporem de 'inteligência' para cortar o fornecimento imediatamente ao detectar anomalias como sobrecorrente, surtos, fuga de energia ou superaquecimento. Já a instalação de tomadas de uso geral cria uma vulnerabilidade de segurança, pois permite o uso indiscriminado de carregadores portáteis, adaptadores ou equipamentos para outros propósitos sem homologação nacional, dificultando o controle do condomínio sobre a qualidade dos equipamentos conectados ao ambiente da garagem."
+            },
+            3: {
+                title: "3. Da Limitação por Unidade",
+                icon: "ph-house-line",
+                colorClass: "purple",
+                text: "Será permitida a instalação de apenas 01 (um) ponto de recarga (Wallbox) por unidade autônoma (apartamento).",
+                justification: "Assegurar a isonomia entre os condôminos e permitir que o maior número possível de moradores tenha acesso ao sistema com a infraestrutura atual, retardando a necessidade de obras complexas de aumento de carga ou implementação imediata de sistemas de gerenciamento onerosos."
+            },
+            4: {
+                title: "4. Da Potência Máxima",
+                icon: "ph-lightning",
+                colorClass: "amber",
+                text: "A potência máxima nominal permitida para cada equipamento instalado (Wallbox) será limitada a 8 kW (oito quilowatts) do tipo corrente alternada e monofásico.",
+                justification: "Preservar a curva de demanda do condomínio e evitar a sobrecarga prematura do sistema elétrico, permitindo a democratização do acesso à recarga antes que sejam necessárias medidas de infraestrutura robusta ou restrições severas de uso."
+            },
+            5: {
+                title: "5. Do Esgotamento da Capacidade e Rodízio",
+                icon: "ph-clock-clockwise",
+                colorClass: "red",
+                text: "Na hipótese de o número de interessados superar a capacidade de carga instalada disponível nos quadros de distribuição ou na entrada de energia do edifício, o Condomínio instituirá um sistema de rodízio de uso ou de horários.<br><br><strong>Parágrafo Único:</strong> O sistema de rodízio será administrado pela gestão condominial e vigorará até que sejam viabilizadas e aprovadas em assembleia eventuais obras de aumento de demanda junto à concessionária (Neoenergia) e adequação dos quadros.",
+                justification: "Garantir que todas as unidades interessadas possam usufruir do benefício de forma justa e organizada, respeitando os limites físicos da infraestrutura atual sem provocar o desarme geral dos disjuntores do prédio."
+            },
+            6: {
+                title: "6. Da Consultoria Técnica e Taxa Administrativa",
+                icon: "ph-magnifying-glass",
+                colorClass: "slate",
+                text: "Fica instituída a cobrança de taxa administrativa específica, a ser custeada pelo morador solicitante, destinada exclusivamente à contratação de consultoria técnica especializada pelo Condomínio.<br><br><strong>§ 1º A consultoria terá como escopo:</strong><br>I. Revisar se o projeto executivo apresentado pelo morador atende aos requisitos deste regulamento e do projeto elétrico coletivo;<br>II. Determinar a fase elétrica a ser utilizada na derivação do ramal, visando manter o balanceamento de carga do sistema trifásico do condomínio;<br>III. Fiscalizar, após a conclusão, se a execução da obra individual atendeu aos requisitos aprovados e gerar registro para o condomínio.",
+                justification: "Assegurar que a análise dos projetos não seja feita por leigos, garantindo o balanceamento correto das fases (evitando sobrecarga em apenas uma fase do prédio) e certificando que o que foi executado corresponde ao que foi projetado, protegendo o patrimônio coletivo. Garantir que a análise do projeto proposto e executado seja feito por um engenheiro isento (imparcial), além de não impor o custo a todos os outros moradores."
+            }
+        };
+
+        function openModal(id) {
+            const data = rulesData[id];
+            const overlay = document.getElementById('modal-overlay');
+            const content = document.getElementById('modal-content');
+            
+            // Populate content
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-text').innerHTML = data.text;
+            document.getElementById('modal-justification').innerText = data.justification;
+            
+            // Icon and Colors
+            const iconElement = document.getElementById('modal-icon');
+            const iconBg = document.getElementById('modal-icon-bg');
+            
+            // Reset base classes and apply dynamic ones (simplification for color handling)
+            iconElement.className = `ph-bold ${data.icon} text-3xl`;
+            
+            // Map colors manually for Tailwind dynamic classes aren't always safe in raw string interpolation without safelist
+            const colors = {
+                blue: { text: 'text-blue-700', bg: 'bg-blue-100' },
+                green: { text: 'text-green-700', bg: 'bg-green-100' },
+                purple: { text: 'text-purple-700', bg: 'bg-purple-100' },
+                amber: { text: 'text-amber-700', bg: 'bg-amber-100' },
+                red: { text: 'text-red-700', bg: 'bg-red-100' },
+                slate: { text: 'text-slate-700', bg: 'bg-slate-200' },
+            };
+            
+            const theme = colors[data.colorClass];
+            iconElement.classList.add(theme.text);
+            iconBg.className = `p-3 rounded-xl ${theme.bg}`;
+
+            // Show
+            overlay.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+            
+            // Animation Trigger
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal(event) {
+            // Close if clicked on overlay or close button (not content)
+            if (event && !event.target.id && !event.target.classList.contains('ph-x') && !event.target.closest('button')) return; // Simple check, usually target check against overlay id is best
+
+            if (event && event.target.id !== 'modal-overlay' && !event.target.closest('button')) return;
+
+            const content = document.getElementById('modal-content');
+            const overlay = document.getElementById('modal-overlay');
+
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                document.body.classList.remove('modal-open');
+            }, 300);
+        }
+    </script>
+</body>
+</html>

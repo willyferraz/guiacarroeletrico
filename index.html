@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia para Instalação de Carro Elétrico em Condomínios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon-blue: #00f2ff; --dark-bg: #0a0b10; --card-bg: #161b22; }
+        body { background-color: var(--dark-bg); color: #e6edf3; font-family: 'Inter', sans-serif; margin: 0; scroll-behavior: smooth; }
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+        .hero-gradient { background: radial-gradient(circle at 50% 50%, #1a2333 0%, #0a0b10 100%); border-bottom: 1px solid #30363d; }
+        .neon-text { color: var(--neon-blue); text-shadow: 0 0 10px rgba(0, 242, 255, 0.3); }
+        .content-card { background: var(--card-bg); border: 1px solid #30363d; border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem; transition: all 0.3s ease; }
+        .content-card:hover { border-color: var(--neon-blue); }
+        .justificativa { background: rgba(0, 242, 255, 0.05); border-left: 4px solid var(--neon-blue); padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+        .nav-sidebar { background: #0d1117; border-right: 1px solid #30363d; }
+        .sticky-nav { position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+        .accent-bar { width: 40px; height: 4px; background: var(--neon-blue); margin-bottom: 1.5rem; }
+        .sidebar-link { transition: color 0.2s; font-size: 0.85rem; }
+        .sidebar-link:hover { color: var(--neon-blue); }
+        .highlight { color: var(--neon-blue); font-weight: 600; }
+        
+        .tech-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+        .tech-table th { background: #21262d; color: var(--neon-blue); text-align: left; padding: 12px; border: 1px solid #30363d; text-transform: uppercase; letter-spacing: 0.05em; }
+        .tech-table td { padding: 12px; border: 1px solid #30363d; color: #acb1b8; }
+        .tech-table tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+
+        .list-tech { margin-bottom: 1.5rem; }
+        .list-tech > li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; color: #acb1b8; }
+        .list-tech > li::before { content: "▹"; position: absolute; left: 0; color: var(--neon-blue); }
+        .list-subtech { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+        .list-subtech > li { position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; color: #8b949e; font-size: 0.9em; }
+        .list-subtech > li::before { content: "▪"; position: absolute; left: 0; color: #8b949e; }
+
+        .btn-anexo { display: inline-flex; align-items: center; background: rgba(0, 242, 255, 0.1); border: 1px solid var(--neon-blue); color: var(--neon-blue); padding: 0.75rem 1.25rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; margin-top: 0.5rem; }
+        .btn-anexo:hover { background: var(--neon-blue); color: #000; box-shadow: 0 0 15px rgba(0, 242, 255, 0.4); }
+    </style>
+</head>
+<body>
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-80 hidden lg:block nav-sidebar">
+            <div class="sticky-nav p-8">
+                <div class="mb-10">
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-cyan-400 font-bold">Iniciativa Coletiva</span>
+                    <h1 class="text-xl font-bold mt-2 leading-tight text-white">Guia para Instalação de Carro Elétrico em Condomínios</h1>
+                </div>
+                <nav>
+                    <ul class="space-y-4 font-medium">
+                        <li><a href="#cap1" class="sidebar-link text-gray-400">Cap. 1: Convencimento</a></li>
+                        <li><a href="#cap2" class="sidebar-link text-gray-400">Cap. 2: Análise de Capacidade</a></li>
+                        <li><a href="#cap3" class="sidebar-link text-gray-400">Cap. 3: Regras de Abrangência</a></li>
+                        <li><a href="#cap4" class="sidebar-link text-gray-400">Cap. 4: Projeto Global vs Individual</a></li>
+                        <li><a href="#cap5" class="sidebar-link text-gray-400">Cap. 5: Consultoria Técnica</a></li>
+                        <li><a href="#cap6" class="sidebar-link text-gray-400">Cap. 6: Responsabilidade Ética</a></li>
+                        <li><a href="#cap7" class="sidebar-link text-gray-400">Cap. 7: Anexos e Modelos</a></li>
+                    </ul>
+                </nav>
+                <div class="mt-20 pt-10 border-t border-gray-800 text-xs text-gray-500">
+                    <p class="italic mb-1">Contribuição:</p>
+                    <p class="font-semibold text-gray-300">Willy Ferraz de Oliveira</p>
+                    <p class="text-cyan-400 font-bold">(Grupo Geely EX2)</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+            <header class="hero-gradient py-24 px-8 md:px-20 text-left">
+                <div class="max-w-4xl">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 tracking-tighter">Guia para Instalação <br><span class="neon-text">De Carro Elétrico em Condomínios</span></h1>
+                    <p class="text-xl text-gray-400 max-w-2xl leading-relaxed">Documento de orientação técnica e regulamentar baseada em engenharia e segurança.</p>
+                </div>
+            </header>
+
+            <div class="max-w-4xl mx-auto py-16 px-8 md:px-0">
+                
+                <!-- CAPÍTULO 1 -->
+                <section id="cap1" class="content-card shadow-2xl">
+                    <div class="accent-bar"></div>
+                    <h2 class="text-3xl font-bold mb-8 text-white">Capítulo 1: Convencimento da Assembleia e Valorização do Patrimônio</h2>
+                    <p class="mb-5 text-gray-400 leading-relaxed">O maior erro ao tentar aprovar a infraestrutura de recarga em condomínios é focar apenas no carro. Para vencer a resistência em uma assembleia, você não deve falar de "cavalos-vapor" ou "autonomia", mas sim de <span class="highlight">patrimônio, segurança e mercado</span>.</p>
+                    
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">1.1 O Argumento Central: Valorização vs. Obsolescência</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Hoje, o carregador de carro elétrico é o que o sinal de Wi-Fi ou a academia foram para os prédios há 20 anos: um diferencial que se tornou essencial.</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Aumento de Valor de Revenda:</strong> Estudos do mercado imobiliário indicam que imóveis preparados para a eletromobilidade podem ter uma valorização imediata de 3% a 5%. Em um apartamento de R$ 1 milhão, estamos falando de agregar R$ 50 mil ao patrimônio com um investimento de infraestrutura proporcionalmente baixo.</li>
+                        <li><strong class="text-white">Ameaça da Obsolescência:</strong> Prédios novos já nascem com essa infraestrutura. Se o seu condomínio se recusar a evoluir, ele perderá liquidez. O comprador moderno, ao ver que o prédio é "bloqueado" para tecnologias sustentáveis, simplesmente descartará a unidade.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">1.2 Dados de Mercado que Chancelam a Decisão</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Use números para tirar a discussão do campo da opinião:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Crescimento Exponencial:</strong> O Brasil superou a marca de 200 mil veículos eletrificados em circulação em 2025. Não é mais uma "promessa", é a realidade da frota nacional.</li>
+                        <li><strong class="text-white">Perfil do Consumidor:</strong> O proprietário de veículos pertence a uma classe consumidora que busca modernidade. Atrair esse perfil para o prédio mantém o nível de valorização do condomínio.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">1.3 Saúde e Sustentabilidade</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Diferente dos carros a combustão, os veículos elétricos não emitem monóxido de carbono ou partículas poluentes durante a manobra. Em garagens fechadas ou subsolos, a transição para elétricos significa um ar mais limpo e menos fuligem nas paredes e tetos, reduzindo inclusive custos de pintura a longo prazo.</p>
+
+                    <div class="bg-blue-900/10 border border-blue-500/30 p-6 rounded-xl my-6">
+                        <h4 class="text-lg font-bold text-blue-400 mb-3 flex items-center">💡 Exercício de Adaptação Local (Não pule esta parte!)</h4>
+                        <p class="text-sm text-gray-300 mb-4">Para que sua fala seja imbatível, você deve "tropicalizar" os argumentos de acordo com a sua realidade. Pesquise antes de falar:</p>
+                        <ul class="list-tech text-sm">
+                            <li><strong class="text-white">A "Vizinhança" como Referência:</strong> Verifique os três prédios mais próximos ao seu. Algum deles já tem carregador ou anúncio de "vaga verde"? Se sim, use isso: "O prédio X já se modernizou; se não fizermos o mesmo, nosso m² valerá menos que o deles em breve."</li>
+                            <li><strong class="text-white">Identifique os Aliados:</strong> Procure por vizinhos que possuem carros híbridos (mesmo que não plug-in) ou que tenham perfil voltado à tecnologia. Eles são seus primeiros votos favoráveis. Solicite reunião específica para este finalidade e faça trabalho individual de convite e antecipação do assunto.</li>
+                            <li><strong class="text-white">Conheça a Legislação da sua Cidade:</strong> Em locais como Brasília, a adesão é altíssima e o mercado imobiliário já exige essa adaptação. Verifique se há leis municipais ou incentivos de "IPTU Verde" que premiam condomínios sustentáveis.</li>
+                        </ul>
+                    </div>
+
+                    <div class="justificativa">
+                        <h4 class="text-sm font-bold text-cyan-400 uppercase mb-2">O "Pitch" de 1 Minuto para a Assembleia:</h4>
+                        <p class="text-sm italic text-gray-300">"Senhores, este projeto não é sobre um morador querer carregar seu carro. É sobre protegermos o valor dos nossos apartamentos. O mercado imobiliário mudou, e prédios sem infraestrutura elétrica estão começando a ser vistos como prédios sem garagem. Proponho um sistema organizado, seguro e pago por quem usar, que tira o nosso condomínio do passado e o coloca na vanguarda da valorização imobiliária."</p>
+                    </div>
+
+                    <p class="mb-5 text-gray-400 leading-relaxed bg-gray-800/50 p-4 border-l-4 border-yellow-500 rounded-r-lg"><strong class="text-yellow-500">Dica do Especialista:</strong> Sempre enfatize que a instalação seguirá as normas técnicas e que a conta de energia será individualizada. O medo de "curto-circuito" e do "quem paga a conta" são os maiores inimigos do sim.</p>
+                </section>
+
+                <!-- CAPÍTULO 2 -->
+                <section id="cap2" class="content-card shadow-2xl">
+                    <div class="accent-bar"></div>
+                    <h2 class="text-3xl font-bold mb-8 text-white">Capítulo 2: Análise de Capacidade – Conhecendo os Limites do Prédio</h2>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Antes de passar o primeiro cabo ou comprar o carregador, precisamos responder à pergunta que tira o sono de qualquer síndico: <span class="highlight">"O prédio aguenta a carga extra sem desarmar o disjuntor geral ou derreter componentes?"</span>. A resposta não pode ser um palpite; ela deve ser baseada em dados reais e medições técnicas detalhadas.</p>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">2.1 O Diagnóstico: Monitoramento com Analisador de Energia</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Não basta olhar a conta de luz ou apenas o medidor da concessionária. A demanda de um condomínio varia drasticamente ao longo do dia e em diferentes pontos da instalação. Para um projeto seguro, o fluxo correto de análise deve seguir estes passos:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Contratação de Engenharia Especializada:</strong> O serviço deve ser feito por profissionais que utilizem Analisadores de Energia de ponta.</li>
+                        <li><strong class="text-white">Monitoramento Contínuo (14 dias):</strong> A medição deve durar, no mínimo, duas semanas ininterruptas. Isso permite capturar o comportamento do prédio em dias úteis e finais de semana.</li>
+                        <li><strong class="text-white">A Escolha da Data "Pior Caso":</strong> Para que a margem de segurança seja real, as medições devem:
+                            <ul class="list-subtech">
+                                <li>Evitar períodos de recesso, feriados ou férias (quando o consumo cai).</li>
+                                <li>Priorizar épocas de calor intenso: É o momento de maior uso de ar-condicionado, onde o sistema elétrico do prédio já trabalha perto do limite.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">2.2 Onde Medir: A Visão Macro e Micro</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Um erro comum é analisar apenas o barramento de entrada. O estudo de viabilidade deve ser abrangente:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Barramento de Entrada:</strong> Verifica se a carga total contratada junto à concessionária suporta os novos veículos.</li>
+                        <li><strong class="text-white">Quadros de Distribuição Internos:</strong> Esta é a etapa crítica. Muitas vezes, há folga na entrada do prédio, mas os quadros que distribuem a energia para os apartamentos ou para os setores da garagem já estão saturados. Medir esses pontos evita sobreaquecimentos locais, quedas de tensão excessivas e o risco de incêndios em subquadros.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">2.3 Por Que Exigir o Profissional Habilitado?</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">A eletromobilidade lida com correntes altas por períodos prolongados (4 a 8 horas contínuas). Somente um Engenheiro Eletricista, munido de ART (Anotação de Responsabilidade Técnica), pode atestar que tanto o barramento principal quanto os quadros de distribuição internos possuem capacidade térmica e mecânica para essa nova realidade.</p>
+                    <p class="mb-5 text-gray-400 leading-relaxed bg-gray-800/50 p-4 border-l-4 border-cyan-500 rounded-r-lg"><strong class="text-cyan-400">Regra de Ouro:</strong> O gargalo pode estar escondido em um quadro de distribuição no subsolo, mesmo que o medidor da rua esteja "folgado". A medição ponta a ponta é a única garantia de segurança.</p>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">2.4 Por Que Exigir o Profissional Habilitado?</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">A eletromobilidade lida com correntes altas por períodos prolongados (4 a 8 horas contínuas). Somente um Engenheiro Eletricista, munido de ART (Anotação de Responsabilidade Técnica), pode atestar que tanto o barramento principal quanto os quadros de distribuição internos possuem capacidade térmica e mecânica para essa nova realidade.</p>
+                    <p class="mb-5 text-gray-400 leading-relaxed bg-gray-800/50 p-4 border-l-4 border-cyan-500 rounded-r-lg"><strong class="text-cyan-400">Regra de Ouro:</strong> O gargalo pode estar escondido em um quadro de distribuição no subsolo, mesmo que o medidor da rua esteja "folgado". A medição ponta a ponta é a única garantia de segurança.</p>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">2.5 Os Caminhos Pós-Estudo: Estratégias de Implementação</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Com o laudo técnico em mãos, o condomínio se deparará com um dos três cenários abaixo. Cada um exige uma estratégia de investimento e gestão diferente:</p>
+
+                    <h4 class="text-lg font-bold text-white mt-6 mb-3">CENÁRIO A: O Prédio está "Estrangulado" (Sem Margem de Carga)</h4>
+                    <p class="mb-4 text-gray-400">Se a análise mostrar que o sistema opera no limite, o condomínio tem duas saídas:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Aumento de Demanda:</strong> É a solução definitiva, porém a mais cara. Exige um novo projeto elétrico junto à concessionária (ex: Neoenergia), troca de cabos de entrada e, muitas vezes, do transformador.
+                            <ul class="list-subtech">
+                                <li><strong>Argumento de peso:</strong> Se o prédio não investir nisso agora para os carros, terá que fazê-lo em breve para suportar novos aparelhos de ar-condicionado. É um investimento em infraestrutura básica, não apenas em "mobilidade".</li>
+                            </ul>
+                        </li>
+                        <li><strong class="text-white">Vagas Rotativas:</strong> Uma solução paliativa onde o condomínio cria 2 ou 3 vagas de uso comum para recarga.
+                            <ul class="list-subtech">
+                                <li><strong>Desafio:</strong> Exige alta gestão administrativa (agendamento e tempo de permanência) e pode gerar conflitos entre moradores. Pense no cenário de precisar carregar e as vagas estarem ocupadas. Considere que sua recarga vai terminar 2h da manhã e há outro morador querendo carregar após o término da sua. Na prática, cria uma insegurança de disponibilidade que é provável que você opte por carregar em eletroposto.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4 class="text-lg font-bold text-white mt-6 mb-3">CENÁRIO B: Margem para Instalação Parcial (O cenário mais comum)</h4>
+                    <p class="mb-4 text-gray-400">Quando o prédio aguenta alguns carregadores, mas não todos simultaneamente. Aqui, o foco é a democratização da carga:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Rodízio de Carregamento:</strong> Estabelece-se um calendário (ex: vagas pares carregam em dias pares; vagas ímpares em dias ímpares). Isso divide a carga ao meio, permitindo que o dobro de moradores utilize o sistema sem exceder os limites. Entretanto, dessa forma há previsibilidade de carregamento e você confia que terá disponibilidade programada.
+                            <br><br>Um controle mais simples pode ser estabelecido para rodízio através sistema de contatoras, controladas por funcionário do condomínio ou controlador programável, com investimento relativamente pequeno, por ser um sistema mais simples.
+                        </li>
+                        <li><strong class="text-white">Smart Charging (Gerenciamento de Carga) - A Melhor Opção:</strong> Instala-se um software/hardware gerenciador que "conversa" com os Wallboxes. Se o prédio atinge um pico de consumo às 19h, o sistema reduz a potência de todos os carros automaticamente e a libera na madrugada. Possui custo elevado, uma vez que os gerenciadores exigem investimento considerável, além do custo dos wallboxes compatíveis.
+                            <ul class="list-subtech">
+                                <li><strong>Observação Importante:</strong> Esta opção exige a compra de Wallboxes específicos que suportem comunicação (protocolos como o OCPP) para serem controlados pelo gerenciador central.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4 class="text-lg font-bold text-white mt-6 mb-3">CENÁRIO C: Margem Total (O "Sonho de Consumo")</h4>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Cenário raro em prédios que não foram projetados para isso, mas ocorre em edifícios com grandes reservas técnicas. Aqui, basta estabelecer o Projeto Global de Infraestrutura para que as instalações individuais ocorram de forma padronizada e estética.</p>
+
+                    <div class="overflow-x-auto my-6">
+                        <table class="tech-table">
+                            <thead>
+                                <tr>
+                                    <th>Cenário</th>
+                                    <th>Complexidade</th>
+                                    <th>Custo Inicial</th>
+                                    <th>Gestão</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Aumento de Carga</strong></td>
+                                    <td>Alta</td>
+                                    <td>Muito Alto</td>
+                                    <td>Baixa (Uso livre)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Vagas Rotativas</strong></td>
+                                    <td>Baixa</td>
+                                    <td>Médio</td>
+                                    <td>Altíssima (Conflitos)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Smart Charging</strong></td>
+                                    <td>Média</td>
+                                    <td>Médio</td>
+                                    <td>Automatizada</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Rodízio de Dias</strong></td>
+                                    <td>Baixa (desde que haja disponibilidade elétrica)</td>
+                                    <td>Baixo</td>
+                                    <td>Manual ou Automático/Regimento</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- CAPÍTULO 3 -->
+                <section id="cap3" class="content-card shadow-2xl">
+                    <div class="accent-bar"></div>
+                    <h2 class="text-3xl font-bold mb-8 text-white">Capítulo 3: Regras de Abrangência (A "Constituição" do Carregamento)</h2>
+                    <p class="mb-5 text-gray-400 leading-relaxed">A análise técnica realizada no capítulo anterior nos oferece o diagnóstico real da infraestrutura do condomínio, mas é o estabelecimento de regras claras que determina o sucesso de qualquer um dos caminhos escolhidos. Sem uma regulamentação aprovada em assembleia, mesmo o prédio com a melhor infraestrutura corre o risco de colapso técnico ou conflitos judiciais.</p>
+                    <p class="mb-5 text-gray-400 leading-relaxed">A criação destas normas é fundamental para transformar os limites físicos do edifício em um sistema de uso inteligente e democrático. Elas servem para garantir que a conveniência de um morador hoje não se torne a impossibilidade de outro amanhã. Ao definirmos limites e padrões, viabilizamos soluções como o Gerenciamento de Carga (Smart Charging) ou o Rodízio de Horários, permitindo que o condomínio receba o maior número possível de veículos com o menor investimento estrutural imediato.</p>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">O Caso Prático: Estratégia de Abrangência</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Para ilustrar como a gestão inteligente amplia o atendimento, tomemos como exemplo um condomínio de 72 apartamentos com as seguintes projeções:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Capacidade Nominal:</strong> O estudo técnico aponta disponibilidade imediata para 20 Wallboxes de 8 kW funcionando simultaneamente.</li>
+                        <li><strong class="text-white">O Poder das Regras (Rodízio):</strong> Ao estabelecer uma regra de rodízio de 24h (alternando dias de uso entre grupos de moradores), essa capacidade de atendimento dobra imediatamente para 40 apartamentos.</li>
+                        <li><strong class="text-white">Resultado:</strong> Sem trocar um único cabo da entrada de energia, a abrangência do sistema salta para 55% do prédio.</li>
+                    </ul>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Este cenário demonstra que, com regras bem desenhadas, o condomínio garante uma solução sustentável por muitos anos, acompanhando a curva de adesão aos carros elétricos de forma organizada e econômica. As regras servem, portanto, para transformar os limites físicos do edifício em um sistema de uso inteligente e democrático.</p>
+
+                    <div class="bg-gray-800/30 p-6 border border-gray-700 rounded-xl my-8">
+                        <p class="text-sm text-gray-300 italic mb-6">Exemplo de proposta de regras gerais para votação em assembleia, considerando contexto energético e de segurança:</p>
+                        <h4 class="text-lg font-bold text-white mb-6 uppercase text-center">Proposta de regras gerais para sistema de abastecimento de veículos eletrificados no Residencial XXXXX</h4>
+                        
+                        <h4 class="font-bold text-cyan-400 mb-2">Item 1 – Dos Requisitos Técnicos e Projetos</h4>
+                        <p class="text-sm text-gray-400 mb-3">A instalação de pontos de recarga deverá obedecer estritamente ao projeto elétrico para Sistema de Abastecimento de Veículos Eletrificados (SAVE) contratado pelo condomínio, incluindo determinação de padrões para tipos e seção de condutores, conduítes, dispositivos de proteção condutores e demais fatores técnicos determinados no projeto coletivo. Caberá ao proprietário interessado contratar profissional habilitado para a elaboração do seu projeto individual em harmonia com as regras determinadas pelo projeto coletivo, sendo obrigatória a apresentação da Anotação de Responsabilidade Técnica (ART) de projeto e execução, bem como o cumprimento de todas as normas técnicas vigentes.</p>
+                        <div class="justificativa text-sm"><strong class="text-white">Justificativa:</strong> Garantir a padronização técnica, a segurança das instalações e a conformidade legal do condomínio frente aos órgãos fiscalizadores, evitando intervenções amadoras que coloquem a edificação em risco.</div>
+
+                        <h4 class="font-bold text-cyan-400 mt-6 mb-2">Item 2 – Da Tipologia do Equipamento</h4>
+                        <p class="text-sm text-gray-400 mb-3">Fica autorizada exclusivamente a instalação de estações de recarga do tipo Wallbox (carregador fixo de parede). <strong>Parágrafo Único:</strong> É expressamente vedada a instalação de tomadas de uso geral (padrão doméstico ou industrial) para fins de recarga veicular, bem como a utilização regular de carregadores portáteis como método fixo de abastecimento.</p>
+                        <div class="justificativa text-sm"><strong class="text-white">Justificativa:</strong> Os Wallbox são mais eficazes no gerenciamento ativo da energia, por disporem de "inteligência" para cortar o fornecimento imediatamente ao detectar anomalias como sobrecorrente, surtos, fuga de energia ou superaquecimento. Já a instalação de tomadas de uso geral cria uma vulnerabilidade de segurança, pois permite o uso indiscriminado de carregadores portáteis, adaptadores ou equipamentos para outros propósitos sem homologação nacional, dificultando o controle do condomínio sobre a qualidade dos equipamentos conectados ao ambiente da garagem.</div>
+
+                        <h4 class="font-bold text-cyan-400 mt-6 mb-2">Item 3 – Da Limitação por Unidade</h4>
+                        <p class="text-sm text-gray-400 mb-3">Será permitida a instalação de apenas 01 (um) ponto de recarga (Wallbox) por unidade autônoma (apartamento).</p>
+                        <div class="justificativa text-sm"><strong class="text-white">Justificativa:</strong> Assegurar a isonomia entre os condôminos e permitir que o maior número possível de moradores tenha acesso ao sistema com a infraestrutura atual, retardando a necessidade de obras complexas de aumento de carga ou implementação imediata de sistemas de gerenciamento onerosos.</div>
+
+                        <h4 class="font-bold text-cyan-400 mt-6 mb-2">Item 4 – Da Potência Máxima</h4>
+                        <p class="text-sm text-gray-400 mb-3">A potência máxima nominal permitida para cada equipamento instalado (Wallbox) será limitada a 8 kW (oito quilowatts) do tipo corrente alternada e monofásico.</p>
+                        <div class="justificativa text-sm"><strong class="text-white">Justificativa:</strong> Preservar a curva de demanda do condomínio e evitar a sobrecarga prematura do sistema elétrico, permitindo a democratização do acesso à recarga antes que sejam necessárias medidas de infraestrutura robusta ou restrições severas de uso.</div>
+
+                        <h4 class="font-bold text-cyan-400 mt-6 mb-2">Item 5 – Do Esgotamento da Capacidade e Rodízio</h4>
+                        <p class="text-sm text-gray-400 mb-3">Na hipótese de o número de interessados superar a capacidade de carga instalada disponível nos quadros de distribuição ou na entrada de energia do edifício, o Condomínio instituirá um sistema de rodízio de uso ou de horários. <strong>Parágrafo Único:</strong> O sistema de rodízio será administrado pela gestão condominial e vigorará até que sejam viabilizadas e aprovadas em assembleia eventuais obras de aumento de demanda junto à concessionária (Neoenergia) e adequação dos quadros.</p>
+                        <div class="justificativa text-sm"><strong class="text-white">Justificativa:</strong> Garantir que todas as unidades interessadas possam usufruir do benefício de forma justa e organizada, respeitando os limites físicos da infraestrutura atual sem provocar o desarme geral dos disjuntores do prédio.</div>
+
+                        <h4 class="font-bold text-cyan-400 mt-6 mb-2">Item 6 – Da Consultoria Técnica e Taxa Administrativa</h4>
+                        <p class="text-sm text-gray-400 mb-3">Fica instituída a cobrança de taxa administrativa específica, a ser custeada pelo morador solicitante, destinada exclusivamente à contratação de consultoria técnica especializada pelo Condomínio. § 1º A consultoria terá como escopo: I. Revisar se o projeto executivo apresentado pelo morador atende aos requisitos deste regulamento e do projeto elétrico coletivo; II. Determinar a fase elétrica a ser utilizada na derivação do ramal, visando manter o balanceamento de carga do sistema trifásico do condomínio; III. Fiscalizar, após a conclusão, se a execução da obra individual atendeu aos requisitos aprovados e gerar registro para o condomínio.</p>
+                        <div class="justificativa text-sm"><strong class="text-white">Justificativa:</strong> Assegurar que a análise dos projetos não seja feita por leigos, garantindo o balanceamento correto das fases (evitando sobrecarga em apenas uma fase do prédio) e certificando que o que foi executado corresponde ao que foi projetado, protegendo o patrimônio coletivo. Garantir que a análise do projeto proposto e executado seja feito por um engenheiro isento (imparcial), além de não impor o custo a todos os outros moradores.</div>
+                    </div>
+                </section>
+
+                <!-- CAPÍTULO 4 -->
+                <section id="cap4" class="content-card shadow-2xl">
+                    <div class="accent-bar"></div>
+                    <h2 class="text-3xl font-bold mb-8 text-white">Capítulo 4: Projeto Global vs. Projetos Individuais – A Inteligência da Infraestrutura</h2>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Após definir as regras de convivência, o próximo passo é decidir como os cabos sairão dos medidores e chegarão até as vagas. Existem dois caminhos: a solução desorganizada (individual) e a solução inteligente (global).</p>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">4.1 A "Espinha Dorsal" (Projeto de Infraestrutura Coletiva)</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">A estratégia mais eficiente é o condomínio investir na criação de uma Espinha Dorsal (ou "avenida elétrica"). Trata-se de uma infraestrutura robusta de eletrocalhas, barramentos blindados ou leitos de cabos que percorrem todas as áreas de garagem.</p>
+                    <p class="mb-3 text-white font-semibold">As Vantagens Incontestáveis do Projeto Global:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Padronização Estética:</strong> Evita que o teto da garagem se transforme em um "emaranhado de fios" e conduítes de diferentes cores e tamanhos, o que causa poluição visual e desvaloriza o prédio.</li>
+                        <li><strong class="text-white">Economia de Escala:</strong> Ao criar uma rota única, o custo para o morador individual cai drasticamente, pois ele não precisará atravessar a garagem inteira com cabos próprios; ele apenas se conecta à "avenida" que já passa em frente à sua vaga.</li>
+                        <li><strong class="text-white">Segurança Estrutural:</strong> O projeto global prevê os pontos corretos de fixação e passagem, evitando furos desnecessários em vigas e lajes que poderiam comprometer a integridade do edifício.</li>
+                        <li><strong class="text-white">Facilidade de Manutenção:</strong> Com tudo concentrado em eletrocalhas organizadas, a equipe de manutenção do prédio consegue identificar e isolar problemas muito mais rapidamente.</li>
+                        <li><strong class="text-white">Valorização Unificada:</strong> O prédio passa a ser visto como "preparado para o futuro", aumentando o valor de todas as unidades, mesmo as de quem não pretende ter um carro elétrico agora.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">4.2 O "Puxadinho" Técnico (Projeto Individual)</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Embora a opção coletiva seja superior, na ausência de consenso ou investimento do condomínio, o morador pode argumentar o direito de realizar um Projeto Individual.</p>
+                    <p class="mb-3 text-white font-semibold">Contudo, este caminho é significativamente mais complexo e oneroso:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Custos Elevados:</strong> O morador arca sozinho com toda a extensão da fiação desde o seu medidor até a sua vaga, o que em garagens grandes pode representar dezenas de metros de cabos de alta seção.</li>
+                        <li><strong class="text-white">Intervenções Civis:</strong> Frequentemente exige furos em lajes e paredes corta-fogo para atravessar pavimentos, demandando laudos estruturais específicos e tratamentos de selagem que encarecem a obra.</li>
+                        <li><strong class="text-white">Barreiras de Aprovação:</strong> Como o projeto individual interfere em áreas comuns de forma isolada, o síndico tende a ser muito mais rigoroso na fiscalização para evitar que a instalação de um morador bloqueie o caminho para as futuras instalações dos outros.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">4.3 A Divisão Inteligente: O "Ramal Individual"</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">A solução ideal apresentada neste guia separa a responsabilidade em duas partes:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">O Condomínio entrega a Infraestrutura (Espinha Dorsal):</strong> Garante a rota, a estética e a segurança coletiva.</li>
+                        <li><strong class="text-white">O Morador entrega o Ramal (Puxadinho Técnico):</strong> O proprietário paga apenas pelo cabo que sai da espinha dorsal e chega ao seu Wallbox, além do próprio equipamento.</li>
+                    </ul>
+
+                    <div class="justificativa">
+                        <h4 class="text-sm font-bold text-cyan-400 uppercase mb-2">Conclusão para a Assembleia:</h4>
+                        <p class="text-sm italic text-gray-300">O Projeto Global é um investimento na estética e na ordem do condomínio. É a diferença entre ter uma garagem moderna e valorizada ou um subsolo caótico, cheio de gambiarras e furos na estrutura que podem gerar problemas de infiltração e segurança no futuro.</p>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">Acesso a Modelos e Projetos de Referência</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">"Para facilitar a compreensão visual e técnica, estou disponibilizando como anexo a este guia exemplos de Projetos Executivos Individuais e do Projeto de Infraestrutura Coletiva (Espinha Dorsal).</p>
+                    <div class="bg-red-900/10 border border-red-500/30 p-6 rounded-xl my-6">
+                        <h4 class="text-lg font-bold text-red-400 mb-3 flex items-center">⚠️ AVISO IMPORTANTE (Disclaimer):</h4>
+                        <p class="text-sm text-gray-300">Estes documentos servem exclusivamente como material de referência e estudo de caso. Não devem, sob nenhuma hipótese, ser copiados ou replicados em outros condomínios. Cada edificação possui características únicas de demanda, arquitetura e limitações elétricas. A instalação de sistemas de recarga exige obrigatoriamente a contratação de um profissional habilitado (Engenheiro Eletricista) para a elaboração de um projeto específico para a sua realidade, com a devida emissão da ART (Anotação de Responsabilidade Técnica). A segurança do patrimônio e das vidas no condomínio depende do cumprimento rigoroso das normas técnicas e da responsabilidade profissional."</p>
+                    </div>
+                </section>
+
+                <!-- CAPÍTULO 5 -->
+                <section id="cap5" class="content-card shadow-2xl">
+                    <div class="accent-bar"></div>
+                    <h2 class="text-3xl font-bold mb-8 text-white">Capítulo 5: A Figura do Consultor Técnico – Garantindo a Integridade do Sistema</h2>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Tão importante quanto ter um bom projeto e regras claras é garantir que elas sejam cumpridas. Para isso, o condomínio deve instituir a figura do Consultor Técnico Especializado, um elo vital entre o desejo do morador e a segurança do prédio.</p>
+                    <p class="mb-5 text-gray-400 leading-relaxed">A consultoria técnica não é uma barreira burocrática, mas a garantia de que o seu carregador não vai prejudicar o sistema elétrico do seu vizinho, e vice-versa. É o seguro que protege o patrimônio coletivo contra o erro humano ou técnico.</p>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">5.1 O Papel do Consultor (O "Fiel da Balança")</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">O consultor é um Engenheiro Eletricista contratado pelo condomínio (custeado pelo morador interessado) com o objetivo de auditar cada nova etapa. Suas principais atribuições são:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Revisão de Projetos Individuais:</strong> Verificar se o projeto apresentado pelo morador está em total harmonia com o Projeto de Infraestrutura Coletiva (SAVE) e com as regras aprovadas.</li>
+                        <li><strong class="text-white">Balanceamento de Fases:</strong> Esta é uma etapa crítica. O consultor determinará em qual fase elétrica o morador deve se conectar. Sem esse controle, o prédio corre o risco de sobrecarregar uma única fase, causando desequilíbrio no sistema trifásico e quedas de energia, mesmo havendo carga disponível nas outras fases.</li>
+                        <li><strong class="text-white">Fiscalização da Execução:</strong> Após a conclusão, o consultor realiza uma vistoria técnica para certificar que o que foi executado reflete fielmente o que foi projetado e que os materiais utilizados são os padronizados.</li>
+                        <li><strong class="text-white">Emissão de Parecer de Conformidade:</strong> Somente após o "ok" deste profissional é que a administração do condomínio deve autorizar a energização do ponto de recarga.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">5.2 A Taxa Administrativa de Consultoria</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Para não onerar os moradores que não possuem veículos elétricos, recomenda-se que o custo deste profissional seja coberto por uma taxa administrativa de análise, paga exclusivamente pelo morador solicitante no momento em que ele protocola seu pedido de instalação.</p>
+                    <p class="mb-3 text-white font-semibold">Vantagens deste modelo:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Isenção e Imparcialidade:</strong> O consultor é um profissional técnico e isento, evitando que decisões sobre conexões elétricas sejam tomadas por critérios pessoais ou de amizade entre vizinhos.</li>
+                        <li><strong class="text-white">Proteção ao Síndico:</strong> O síndico deixa de ser o "responsável técnico" por aprovar ou negar algo que foge à sua alçada, passando a decidir com base em laudos de engenharia assinados.</li>
+                        <li><strong class="text-white">Custo Justo:</strong> O ônus da fiscalização recai apenas sobre quem está gerando a necessidade do serviço (o usuário do sistema).</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">5.3 O Registro Histórico (As-Built)</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">O consultor fica responsável por manter atualizado o diagrama unifilar do prédio, registrando cada nova conexão. Isso garante que, daqui a 5 ou 10 anos, o condomínio saiba exatamente como a energia está distribuída nas garagens, facilitando manutenções futuras e novos estudos de carga.</p>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Este detalhamento técnico é essencial. Na engenharia elétrica, a qualidade de uma conexão é tão crítica quanto o dimensionamento do cabo. Uma conexão mal feita é um ponto de resistência, que gera calor e é o estopim para a maioria dos sinistros.</p>
+                    <p class="mb-5 text-gray-400 leading-relaxed italic text-sm">Aqui está o texto ajustado para o Capítulo 6, integrando a importância do rigor na execução e o "capricho" técnico:</p>
+                </section>
+
+                <!-- CAPÍTULO 6 -->
+                <section id="cap6" class="content-card shadow-2xl">
+                    <div class="accent-bar"></div>
+                    <h2 class="text-3xl font-bold mb-8 text-white">Capítulo 6: Responsabilidade e Ética na Adoção da Tecnologia</h2>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Ser um entusiasta da mobilidade elétrica e proprietário de um veículo como o Geely EX2 vai além de usufruir de um bem tecnológico; trata-se de ser um embaixador dessa transição. Por isso, a responsabilidade sobre a instalação elétrica não termina no funcionamento do carregador; ela se estende à segurança coletiva e à reputação da tecnologia.</p>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">6.1 A Engenharia Além das Tabelas</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Um dos maiores erros conceituais é acreditar que a viabilidade de uma instalação se resume a correlacionar tabelas de fabricantes.</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">Análise de Cenários:</strong> A verdadeira engenharia envolve análises profundas de seletividade, coordenação de proteção e comportamento térmico sob regime de carga contínua.</li>
+                        <li><strong class="text-white">O Rigor nas Conexões e Derivações:</strong> O "capricho" do instalador não é uma questão estética, é um requisito de segurança. Conexões frouxas, derivações feitas sem conectores apropriados ou o uso de terminais inadequados criam pontos de alta resistência. Sob carga contínua por 8 horas, esses pontos geram calor excessivo, podendo derreter componentes e iniciar incêndios mesmo que o disjuntor esteja bem dimensionado. A execução deve ser impecável, utilizando ferramentas de torque precisas e materiais de primeira linha.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">6.2 O Risco da "Economia Burra" e o Bloqueio Definitivo</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">Muitas vezes, na tentativa de economizar em componentes ou dispensar uma consultoria, o proprietário comete a "economia burra". O prejuízo pode ser irreversível:</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">O Perigo do "Susto" Desnecessário:</strong> Uma instalação negligente que resulte em um estalo audível, fumaça ou o desarme do disjuntor geral gera pânico coletivo imediato.</li>
+                        <li><strong class="text-white">Interrupção da Tecnologia:</strong> No ambiente condominial, um "susto" é o suficiente para que a assembleia vote pelo bloqueio imediato e por tempo indeterminado de qualquer recarga elétrica. Recuperar a confiança dos vizinhos após um incidente é muito mais caro e difícil do que investir em um projeto rigoroso.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-cyan-400 mt-8 mb-4">6.3 O Impacto Global e o "Falso Domínio"</h3>
+                    <p class="mb-5 text-gray-400 leading-relaxed">A tecnologia de veículos elétricos ainda está sob o escrutínio da sociedade. Um único incidente causado por negligência técnica ganha repercussão imediata, alimentando o preconceito e gerando leis restritivas.</p>
+                    <ul class="list-tech">
+                        <li><strong class="text-white">A Armadilha do Entusiasta:</strong> Ter interesse em tecnologia não substitui o domínio das ciências exatas. Engenharia não é um tutorial de internet; é a garantia de que o seu entusiasmo não se tornará o argumento que os céticos precisavam para proibir os carros elétricos na sua garagem.</li>
+                    </ul>
+                </section>
+
+                <!-- CAPÍTULO 7 -->
+                <section id="cap7" class="content-card shadow-2xl">
+                    <div class="accent-bar"></div>
+                    <h2 class="text-3xl font-bold mb-8 text-white">Capítulo 7: Anexos e Modelos de Referência</h2>
+                    <p class="mb-6 text-gray-400 leading-relaxed">Para auxiliar na visualização do que foi discutido, disponibilizamos abaixo modelos parciais de referência técnica. Lembre-se que cada edificação exige um projeto específico assinado por Engenheiro Eletricista.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="p-5 border border-gray-800 rounded-xl bg-black/20">
+                            <h4 class="text-white font-bold mb-2">Modelo de Projeto Executivo Individual</h4>
+                            <p class="text-sm text-gray-500 mb-4">Exemplo detalhado de um ramal individual, mostrando as proteções térmicas e magnéticas necessárias para a instalação de um Wallbox em vaga privativa.</p>
+                            <a href="https://drive.google.com/file/d/1BLVk2UXW5Cg5slTJMVeJnEqomB6cbWJC/view?usp=drive_link" target="_blank" class="btn-anexo">Download Projeto Executivo (PDF)</a>
+                        </div>
+
+                        <div class="p-5 border border-gray-800 rounded-xl bg-black/20">
+                            <h4 class="text-white font-bold mb-2">Exemplo de Infraestrutura Coletiva (SAVE)</h4>
+                            <p class="text-sm text-gray-500 mb-4">Documento de referência para a "Espinha Dorsal" do condomínio, detalhando eletrocalhas e barramentos que viabilizam o sistema para todas as unidades.</p>
+                            <a href="https://drive.google.com/file/d/1iUzGn7ECD5ikJgsdLQiLq7eewZD_5hX9/view?usp=drive_link" target="_blank" class="btn-anexo">Download SAVE - Global (PDF)</a>
+                        </div>
+
+                        <div class="p-5 border border-gray-800 rounded-xl bg-black/20">
+                            <h4 class="text-white font-bold mb-2">Proposta de Regras Gerais para o Condomínio</h4>
+                            <p class="text-sm text-gray-500 mb-4">Documento exemplo para elaboração de Proposta de Regras Gerais para o Condomínio.</p>
+                            <a href="https://drive.google.com/file/d/1sRM1VMRXb-Rxf8tTpmJrG6M2McSut0JL/view?usp=sharing" target="_blank" class="btn-anexo">Download Regras Gerais (.html)</a>
+                        </div>
+
+                        <div class="p-5 border border-gray-800 rounded-xl bg-black/20">
+                            <h4 class="text-white font-bold mb-2">Distribuição em Pavimento (Layout)</h4>
+                            <p class="text-sm text-gray-500 mb-4">Esquema visual de como a distribuição elétrica deve percorrer o pavimento de garagem para otimizar o uso de cabos e manter a estética.</p>
+                            <a href="https://drive.google.com/file/d/1OtVXSSp6Z-K7-_2aPdUw5CH_yTQVDFjP/view?usp=drive_link" target="_blank" class="btn-anexo">Download Distribuição (PDF)</a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <footer class="bg-[#0d1117] border-t border-[#30363d] py-12 px-8 text-center text-gray-500 text-xs uppercase tracking-widest">
+                <p>PROJETO DE ORIENTAÇÃO TÉCNICA | INFRAESTRUTURA COLETIVA | 2026</p>
+                <p class="mt-2">Contribuição: Willy Ferraz de Oliveira (Grupo Geely EX2)</p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
