@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Eficiência e Economia - Geely EX2</title>
+    <style>
+        :root { --primary: #27ae60; --secondary: #2c3e50; --bg: #f4f7f6; --card: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .card { background: var(--card); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 900px; width: 100%; position: relative; }
+        
+        .header-container { text-align: center; margin-bottom: 25px; border-bottom: 2px solid var(--primary); padding-bottom: 10px; }
+        h2 { color: var(--secondary); margin: 0; font-size: 1.6em; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .grid-container { grid-template-columns: 1fr; } }
+        
+        .section-title { font-size: 0.95em; font-weight: bold; color: var(--primary); margin: 15px 0 10px 0; display: flex; align-items: center; }
+        .input-group { margin-bottom: 12px; }
+        label { display: block; font-size: 0.85em; font-weight: 600; margin-bottom: 4px; color: #444; }
+        input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 1em; }
+        
+        .toggle-container { background: #f1f3f5; padding: 12px; border-radius: 8px; margin: 10px 0; border: 1px solid #e0e0e0; }
+        .checkbox-item { display: flex; align-items: center; cursor: pointer; font-size: 0.9em; font-weight: 500; }
+        .checkbox-item input { width: auto; margin-right: 10px; cursor: pointer; }
+        
+        .calc-btn { grid-column: span 2; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 10px; }
+        .calc-btn:hover { background: #219150; transform: translateY(-2px); }
+        @media (max-width: 768px) { .calc-btn { grid-column: span 1; } }
+        
+        .res-box { grid-column: span 2; margin-top: 25px; display: none; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+        @media (max-width: 768px) { .res-box { grid-column: span 1; } }
+        .res-card { background: #fff; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #eee; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .res-card i { font-size: 1.5em; margin-bottom: 8px; display: block; }
+        .res-card span { display: block; font-size: 0.75em; color: #666; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; }
+        .res-card b { font-size: 1.15em; color: var(--primary); white-space: nowrap; }
+        
+        .hidden { display: none; }
+        .footer { margin-top: 30px; text-align: center; font-size: 0.8em; color: #888; border-top: 1px solid #eee; padding-top: 15px; line-height: 1.6; }
+        .footer a { color: var(--primary); text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header-container">
+        <h2>⚡🚗 Calculadora de Eficiência e Economia - Geely EX2</h2>
+    </div>
+
+    <div class="grid-container">
+        <div class="column">
+            <div class="section-title">🔌 CARREGAMENTO</div>
+            <div class="input-group"><label>Bateria Inicial (%)</label><input type="text" id="batIni" value="15"></div>
+            <div class="input-group"><label>Bateria Final (%)</label><input type="text" id="batFin" value="100"></div>
+            <div class="toggle-container">
+                <label class="checkbox-item">
+                    <input type="checkbox" id="semMedidor" onchange="toggleMedidor()"> Sem dados do medidor (usar 13,5% perda)
+                </label>
+            </div>
+            <div id="camposMedidor">
+                <div class="input-group"><label>Leitura Inicial Medidor (kWh)</label><input type="text" id="medIni" value="31,894"></div>
+                <div class="input-group"><label>Leitura Final Medidor (kWh)</label><input type="text" id="medFin" value="70,549"></div>
+            </div>
+            <div class="input-group"><label>Custo do kWh (R$)</label><input type="text" id="custoKwh" value="1,05"></div>
+        </div>
+
+        <div class="column">
+            <div class="section-title">🚗 USO DO VEÍCULO</div>
+            <div class="input-group"><label>KM rodados com esta carga</label><input type="text" id="kmRodado" value="276,3"></div>
+            <div class="toggle-container">
+                <label class="checkbox-item">
+                    <input type="checkbox" id="compararCombustao" checked onchange="toggleCombustao()"> Comparar com Veículo à Combustão
+                </label>
+            </div>
+            <div id="camposCombustao">
+                <div class="input-group"><label>Rodagem mensal (km/mês)</label><input type="text" id="kmMes" value="1500"></div>
+                <div class="input-group"><label>Preço da Gasolina (R$)</label><input type="text" id="precoGas" value="6,15"></div>
+                <div class="input-group"><label>Consumo Gasolina (km/l)</label><input type="text" id="consGas" value="12"></div>
+            </div>
+        </div>
+
+        <button class="calc-btn" onclick="calcular()">CALCULAR PERFORMANCE</button>
+
+        <div id="res" class="res-box">
+            <div class="res-card"><i>📉</i><span>Perda Carga</span><b id="rPerda">--</b></div>
+            <div class="res-card"><i>🔋</i><span>Consumo Real</span><b id="rConsumo">--</b></div>
+            <div class="res-card"><i>🪙</i><span>Custo por KM</span><b id="rCusto">--</b></div>
+            <div id="cardEconMes" class="res-card"><i>📅</i><span>Econ. Mensal</span><b id="rEconMes">--</b></div>
+            <div id="cardEconAno" class="res-card"><i>💰</i><span>Econ. Anual</span><b id="rEconAno">--</b></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © Copyright 2026 - Comunidade Geely WhatsApp<br>
+        <a href="https://chat.whatsapp.com/JREqy6453QXALilAmGoGbh" target="_blank">Clique aqui para entrar no grupo</a>
+    </div>
+</div>
+
+<script>
+    function toggleMedidor() { document.getElementById('camposMedidor').classList.toggle('hidden', document.getElementById('semMedidor').checked); }
+    function toggleCombustao() { document.getElementById('camposCombustao').classList.toggle('hidden', !document.getElementById('compararCombustao').checked); }
+    
+    function parseBr(id) {
+        let val = document.getElementById(id).value.replace(/\./g, '').replace(',', '.');
+        let num = parseFloat(val);
+        if (id.includes('med') && num > 10000) num = num / 1000;
+        return num || 0;
+    }
+
+    function fBr(val, casas = 2) { return val.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas }); }
+
+    function calcular() {
+        const CAPACIDADE = 39.4;
+        const bIni = parseBr('batIni') / 100;
+        const bFin = parseBr('batFin') / 100;
+        const km = parseBr('kmRodado');
+        const custoKwh = parseBr('custoKwh');
+        
+        const energiaUtil = (bFin - bIni) * CAPACIDADE;
+        let energiaTotal, perda;
+
+        if (document.getElementById('semMedidor').checked) {
+            perda = 13.5;
+            energiaTotal = energiaUtil / (1 - (perda/100));
+        } else {
+            energiaTotal = parseBr('medFin') - parseBr('medIni');
+            if(energiaTotal <= 0) { alert("Verifique as leituras do medidor!"); return; }
+            perda = (1 - (energiaUtil / energiaTotal)) * 100;
+        }
+
+        const consumoKwhKm = energiaTotal / km;
+        const custoKmEV = consumoKwhKm * custoKwh;
+
+        document.getElementById('res').style.display = 'grid';
+        document.getElementById('rPerda').innerText = fBr(perda) + "%";
+        document.getElementById('rConsumo').innerText = fBr(consumoKwhKm, 3) + " kWh/km";
+        document.getElementById('rCusto').innerText = "R$ " + fBr(custoKmEV, 3);
+
+        const comp = document.getElementById('compararCombustao').checked;
+        document.getElementById('cardEconMes').classList.toggle('hidden', !comp);
+        document.getElementById('cardEconAno').classList.toggle('hidden', !comp);
+
+        if (comp) {
+            const kmMes = parseBr('kmMes');
+            const pGas = parseBr('precoGas');
+            const cGas = parseBr('consGas');
+            const econMes = ((pGas / cGas) - custoKmEV) * kmMes;
+            document.getElementById('rEconMes').innerText = "R$ " + fBr(econMes);
+            document.getElementById('rEconAno').innerText = "R$ " + fBr(econMes * 12);
+        }
+    }
+</script>
+</body>
+</html>

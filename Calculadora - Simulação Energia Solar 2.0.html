@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Solar Pro - Balança de Massa (Estável)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --verde: #1a5c37; --azul: #005a9e; --fundo: #f4f7f6; --card: #ffffff; --destaque: #f2c811; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--fundo); padding: 20px; max-width: 1300px; margin: auto; color: #333; }
+        .header-bi { background: var(--verde); color: white; padding: 18px 30px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .config-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 25px; }
+        .input-card { background: var(--card); padding: 12px; border-radius: 10px; border-bottom: 4px solid var(--verde); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .input-card label { display: block; font-size: 0.65rem; font-weight: bold; color: #666; text-transform: uppercase; margin-bottom: 6px; }
+        .input-card input, .input-card select { width: 100%; border: none; font-size: 1rem; font-weight: bold; color: var(--verde); outline: none; background: transparent; }
+        .dashboard { display: grid; grid-template-columns: 1.3fr 1fr; gap: 25px; align-items: start; }
+        .card-unidade { background: var(--card); border-radius: 15px; padding: 28px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); position: relative; border: 1px solid #eef0f2; min-height: 550px; }
+        .icon-header { text-align: center; margin-bottom: 15px; }
+        .icon-header i { font-size: 3rem; color: #444; }
+        .bar-container { height: 42px; background: #eaeff2; border-radius: 8px; overflow: hidden; display: flex; margin: 22px 0; border: 1px solid #d1d9e0; }
+        .seg { display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: bold; transition: width 0.4s ease; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        .f-sim { background: var(--destaque); color: #443c00; } .f-fra { background: #42a5f5; } .f-cre { background: #66bb6a; } .f-pago { background: #ef5350; }
+        .detalhe { font-size: 0.95rem; border-top: 1px solid #f0f2f5; margin-top: 18px; padding-top: 12px; }
+        .linha { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f8f9fa; }
+        .kpi-box { background: #fdfdf5; border: 1px solid #f1f3d8; padding: 12px; border-radius: 10px; margin: 12px 0; }
+        .indicador { font-size: 0.75rem; font-weight: bold; padding: 5px 10px; border-radius: 6px; display: inline-block; margin: 8px 0; }
+        .f-min { background: #e3f2fd; color: #0d47a1; border: 1px solid #bbdefb; } .f-fiob { background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; } .f-extra { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+        .linha-total { font-weight: bold; color: var(--verde); font-size: 1.6rem; border-top: 3px solid var(--verde); margin-top: 15px; padding-top: 12px; display: flex; justify-content: space-between; }
+        .badge-eco { background: #e8f5e9; color: #1b5e20; padding: 12px; border-radius: 10px; font-weight: bold; margin-top: 15px; text-align: center; }
+        .payback-val { font-size: 0.85rem; color: var(--azul); font-weight: 700; margin-top: 10px; display: block; text-align: center; border: 1px solid var(--azul); padding: 8px; border-radius: 6px; background: #f0f7ff; }
+        .card-rateio { grid-column: span 2; background: #ffffff; border: 2px dashed var(--azul); border-radius: 15px; padding: 28px; text-align: center; display: flex; justify-content: space-around; align-items: center; margin-top: 15px; }
+        .rateio-item strong { font-size: 2.4rem; color: #222; display: block; }
+        .footer-proj { grid-column: span 2; background: var(--azul); color: white; padding: 18px; border-radius: 12px; text-align: center; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="header-bi">
+    <h2><i class="fas fa-microchip"></i> Gestão Solar Pro - Brasília 2026</h2>
+    <span><i class="far fa-calendar-check"></i> Próxima Leitura: 21/03</span>
+</div>
+
+<div class="config-grid">
+    <div class="input-card"><label>Ano (Fio B)</label>
+        <select id="v_ano" onchange="rodar()">
+            <option value="0.60" selected>2026 (60%)</option>
+            <option value="0.75">2027 (75%)</option>
+            <option value="0.90">2028 (90%)</option>
+            <option value="1.00">2029 (100%)</option>
+        </select>
+    </div>
+    <div class="input-card"><label>Geração Total (kWh)</label><input type="number" id="v_ger" value="1950" oninput="rodar()"></div>
+    <div class="input-card"><label>Consumo Unid. Geradora</label><input type="number" id="v_cG" value="700" oninput="rodar()"></div>
+    <div class="input-card"><label>Consumo Unid. Receptora</label><input type="number" id="v_cR" value="700" oninput="rodar()"></div>
+    <div class="input-card"><label>Simultaneidade (%)</label><input type="number" id="v_ps" value="30" oninput="rodar()"></div>
+    <div class="input-card"><label>Investimento / Unidade</label><input type="number" id="v_inv" value="16000" oninput="rodar()"></div>
+</div>
+
+<div class="dashboard">
+    <div class="card-unidade">
+        <div class="icon-header"><i class="fas fa-industry"></i><h3>Unidade Geradora</h3></div>
+        <div class="bar-container" id="barG"></div>
+        <div class="detalhe">
+            <div class="kpi-box">
+                <div class="linha"><span>⚡ Autoconsumo (Direto)</span><strong id="g_k_sim"></strong></div>
+                <div class="linha"><span>🔌 Neoenergia (Rede)</span><strong id="g_k_rede"></strong></div>
+            </div>
+            <div class="linha"><span>Enviado p/ Unidade Receptora</span><strong id="g_k_enviado" style="color:var(--verde)"></strong></div>
+            <div id="g_ind" class="indicador"></div>
+            <hr>
+            <div class="linha"><span>Energia (Taxa + Excedente)</span><span id="g_v_ene"></span></div>
+            <div class="linha"><span>Iluminação Pública (CIP)</span><strong id="g_v_cip"></strong></div>
+            <div class="linha-total"><span>CONTA FINAL</span><span id="g_total"></span></div>
+            <div class="badge-eco">Economia Mensal: <span id="g_eco"></span></div>
+            <div id="g_pay" class="payback-val"></div>
+        </div>
+    </div>
+
+    <div class="card-unidade">
+        <div class="icon-header"><i class="fas fa-building"></i><h3>Unidade Receptora</h3></div>
+        <div class="bar-container" id="barR"></div>
+        <div class="detalhe">
+            <div class="linha"><span>Consumo Real Medido</span><strong id="r_k_real"></strong></div>
+            <div class="linha"><span>Créditos Recebidos</span><span id="r_k_receb"></span></div>
+            <div class="kpi-box" style="background:#eef7ff; border-color:#d0e8ff">
+                <div class="linha"><span>📦 Saldo Acumulado (Sobra)</span><strong id="r_k_sobra" style="color:var(--azul)"></strong></div>
+            </div>
+            <div id="r_ind" class="indicador"></div>
+            <hr>
+            <div class="linha"><span>Energia (Taxa + Excedente)</span><span id="r_v_ene"></span></div>
+            <div class="linha"><span>Iluminação Pública (CIP)</span><strong id="r_v_cip"></strong></div>
+            <div class="linha-total"><span>CONTA FINAL</span><span id="r_total"></span></div>
+            <div class="badge-eco">Economia Mensal: <span id="r_eco"></span></div>
+            <div id="r_pay" class="payback-val"></div>
+        </div>
+    </div>
+
+    <div class="card-rateio">
+        <div class="rateio-item"><h4>Soma das Faturas</h4><strong id="t_soma"></strong></div>
+        <div class="rateio-item"><h4>Rateio Individual (50%)</h4><strong id="t_div" style="color:var(--verde)"></strong></div>
+    </div>
+
+    <div class="footer-proj"><p style="margin:0; font-weight:bold;">Sobra Projetada p/ Unidade 03: <strong id="sobra_ano"></strong> kWh / Ano</p></div>
+</div>
+
+<script>
+const T_MIN = 0.9768638; 
+const T_MAX = 1.0683896; 
+const F_B_BASE = 0.22154; 
+const M = 100;
+
+function getCIP(kwh) {
+    if (kwh <= 100) return 13.76; 
+    if (kwh <= 200) return 19.50; 
+    if (kwh <= 350) return 26.20;
+    if (kwh <= 500) return 34.80; 
+    if (kwh <= 700) return 48.10; 
+    return 65.00;
+}
+
+function rodar() {
+    try {
+        const esc = parseFloat(document.getElementById('v_ano').value);
+        const ger = parseFloat(document.getElementById('v_ger').value) || 0;
+        const cG = parseFloat(document.getElementById('v_cG').value) || 0;
+        const cR = parseFloat(document.getElementById('v_cR').value) || 0;
+        const ps = (parseFloat(document.getElementById('v_ps').value) || 0) / 100;
+        const inv = parseFloat(document.getElementById('v_inv').value) || 16000;
+        const F_B_UNIT = F_B_BASE * esc;
+        const f = { style: 'currency', currency: 'BRL' };
+
+        // --- LÓGICA GERADORA ---
+        let simG = cG * ps; 
+        let redeG = Math.max(0, cG - simG); 
+        let injG = Math.max(0, ger - simG);
+        let compG = Math.min(Math.max(0, redeG - M), injG); 
+        let saldoExtraG = Math.max(0, (redeG - M) - compG);
+        
+        let vMinG = M * T_MIN; // Declarada e corrigida
+        let vFioBG = compG * F_B_UNIT;
+        let finalEneG = Math.max(vMinG, vFioBG) + (saldoExtraG * T_MAX);
+        let fatG = (vFioBG > vMinG ? compG + M : M) + saldoExtraG;
+        let totalG = finalEneG + getCIP(fatG);
+        let totalG_Sem = (cG * T_MAX) + getCIP(cG);
+
+        // --- LÓGICA RECEPTORA ---
+        let sobraG = injG - compG; 
+        let compR = Math.min(Math.max(0, cR - M), sobraG);
+        let saldoExtraR = Math.max(0, (cR - M) - compR);
+        
+        let vMinR = M * T_MIN; // Declarada e corrigida
+        let vFioBR = compR * F_B_UNIT;
+        let finalEneR = Math.max(vMinR, vFioBR) + (saldoExtraR * T_MAX);
+        let fatR = (vFioBR > vMinR ? compR + M : M) + saldoExtraR;
+        let totalR = finalEneR + getCIP(fatR);
+        let totalR_Sem = (cR * T_MAX) + getCIP(cR);
+
+        // --- UI UPDATES ---
+        document.getElementById('g_k_sim').innerText = simG.toFixed(0) + " kWh";
+        document.getElementById('g_k_rede').innerText = redeG.toFixed(0) + " kWh";
+        document.getElementById('g_k_enviado').innerText = sobraG.toFixed(0) + " kWh";
+        document.getElementById('g_v_ene').innerText = finalEneG.toLocaleString('pt-BR', f);
+        document.getElementById('g_v_cip').innerText = getCIP(fatG).toLocaleString('pt-BR', f);
+        document.getElementById('g_total').innerText = totalG.toLocaleString('pt-BR', f);
+        document.getElementById('g_eco').innerText = Math.max(0, totalG_Sem - totalG).toLocaleString('pt-BR', f);
+        
+        document.getElementById('g_ind').innerText = saldoExtraG > 0 ? "⚠️ CONSUMO EXCEDEU O SOL" : (vFioBG > vMinG ? "⚠️ FIO B ATIVO" : "✅ TARIFA MÍNIMA");
+        document.getElementById('g_ind').className = "indicador " + (saldoExtraG > 0 ? "f-extra" : (vFioBG > vMinG ? "f-fiob" : "f-min"));
+        document.getElementById('g_pay').innerText = "Payback Individual: " + (inv / Math.max(1, (totalG_Sem - totalG)) / 12).toFixed(1) + " anos";
+
+        document.getElementById('r_k_real').innerText = cR + " kWh";
+        document.getElementById('r_k_receb').innerText = sobraG.toFixed(0) + " kWh";
+        document.getElementById('r_k_sobra').innerText = Math.max(0, sobraG - compR).toFixed(0) + " kWh";
+        document.getElementById('r_v_ene').innerText = finalEneR.toLocaleString('pt-BR', f);
+        document.getElementById('r_v_cip').innerText = getCIP(fatR).toLocaleString('pt-BR', f);
+        document.getElementById('r_total').innerText = totalR.toLocaleString('pt-BR', f);
+        document.getElementById('r_eco').innerText = Math.max(0, totalR_Sem - totalR).toLocaleString('pt-BR', f);
+        
+        document.getElementById('r_ind').innerText = saldoExtraR > 0 ? "⚠️ CRÉDITO INSUFICIENTE" : (vFioBR > vMinR ? "⚠️ FIO B ATIVO" : "✅ TARIFA MÍNIMA");
+        document.getElementById('r_ind').className = "indicador " + (saldoExtraR > 0 ? "f-extra" : (vFioBR > vMinR ? "f-fiob" : "f-min"));
+        document.getElementById('r_pay').innerText = "Payback Individual: " + (inv / Math.max(1, (totalR_Sem - totalR)) / 12).toFixed(1) + " anos";
+
+        document.getElementById('t_soma').innerText = (totalG + totalR).toLocaleString('pt-BR', f);
+        document.getElementById('t_div').innerText = ((totalG + totalR) / 2).toLocaleString('pt-BR', f);
+        document.getElementById('sobra_ano').innerText = (Math.max(0, sobraG - compR) * 12).toLocaleString('pt-BR');
+
+        // BARRAS CORRIGIDAS
+        const draw = (id, c, sim, m, comp, extra) => {
+            const el = document.getElementById(id); el.innerHTML = "";
+            const totalWidth = Math.max(c, 1);
+            const add = (v, cl) => { if(v > 0) el.innerHTML += `<div class="seg ${cl}" style="width:${(v/totalWidth)*100}%">${v.toFixed(0)}</div>` };
+            add(sim, 'f-sim'); add(m, 'f-fra'); add(comp, 'f-cre'); add(extra, 'f-pago');
+        };
+        draw('barG', cG, simG, M, compG, saldoExtraG); 
+        draw('barR', cR, 0, M, compR, saldoExtraR);
+    } catch (e) {
+        console.error("Erro no cálculo: ", e);
+    }
+}
+window.onload = rodar;
+</script>
+</body>
+</html>
